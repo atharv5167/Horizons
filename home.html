@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horizons — Curated Luxury Travel</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Great+Vibes&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --navy: #0a1628;
+      --gold: #c9a84c;
+      --white: #ffffff;
+      --light-gray: #f7f7f7;
+      --text: #333;
+      --charcoal: #222;
+      --container-width: 1200px;
+      --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: auto; }
+
+    html, body {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE/Edge */
+    }
+    html::-webkit-scrollbar, body::-webkit-scrollbar {
+      display: none; /* Chrome/Safari/Webkit */
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ───────────── UTILITIES ───────────── */
+    .container {
+      max-width: var(--container-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-padding {
+      padding: 100px 0;
+    }
+
+    .text-center { text-align: center; }
+
+    h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      color: #888;
+      margin-bottom: 60px;
+    }
+
+    /* ───────────── NAVBAR ───────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: transparent;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      transform: translateY(-100%);
+    }
+
+    .nav-container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.4s;
+    }
+
+    nav.scrolled .logo {
+      color: var(--navy);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+      list-style: none;
+    }
+
+    .nav-links li {
+      position: relative;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.4s;
+    }
+
+    nav.scrolled .nav-links a {
+      color: var(--charcoal);
+    }
+
+    .nav-links a:hover {
+      color: var(--gold) !important;
+    }
+
+    /* Dropdown stays white background */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--white);
+      width: 220px;
+      padding: 20px 0;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: var(--transition);
+      list-style: none;
+    }
+
+    .dropdown a {
+      color: var(--charcoal) !important;
+    }
+
+    .nav-links li:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--white);
+      transition: color 0.4s;
+    }
+
+    nav.scrolled .icon-btn {
+      color: var(--charcoal);
+    }
+
+    .phone-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 28px;
+      border: 1.5px solid var(--white);
+      border-radius: 100px;
+      text-decoration: none;
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 700;
+      transition: all 0.4s;
+    }
+
+    nav.scrolled .phone-cta {
+      border-color: var(--charcoal);
+      color: var(--charcoal);
+    }
+
+    .phone-cta:hover {
+      background: var(--gold);
+      color: var(--white) !important;
+      border-color: var(--gold) !important;
+    }
+
+    .hamburger {
+      color: var(--white);
+    }
+
+    nav.scrolled .hamburger {
+      color: var(--navy);
+    }
+
+    /* ───────────── HERO SLIDER ───────────── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .slides {
+      height: 100%;
+      width: 100%;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 50%, rgba(0,0,0,0.3) 100%);
+    }
+
+    .slide-content {
+      position: relative;
+      z-index: 2;
+      color: var(--white);
+      max-width: 800px;
+      padding: 0 20px;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 1s 0.5s ease;
+    }
+
+    .slide.active .slide-content {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .slide-country {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      color: var(--white);
+    }
+
+    .slide-city {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(60px, 10vw, 110px);
+      font-weight: 800;
+      line-height: 1;
+      margin-bottom: 25px;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-desc {
+      font-size: 16px;
+      line-height: 1.8;
+      max-width: 550px;
+      margin: 0 auto;
+      opacity: 0.9;
+    }
+
+    /* Slider Controls */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 54px;
+      height: 54px;
+      border: 2px solid rgba(255,255,255,0.4);
+      background: transparent;
+      border-radius: 50%;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      z-index: 10;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .arrow:hover {
+      background: var(--white);
+      color: var(--navy);
+      border-color: var(--white);
+    }
+
+    .arrow-left { left: 40px; }
+    .arrow-right { right: 40px; }
+
+    .dots {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border: 2px solid white;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .dot.active {
+      background: white;
+    }
+
+    /* ───────────── POPULAR TOURS ───────────── */
+    #tours {
+      background: var(--white);
+    }
+
+    .tour-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .tour-card {
+      background: var(--white);
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      transition: transform 0.4s ease;
+    }
+
+    .tour-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .tour-img {
+      height: 260px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .tour-tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--gold);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 50px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .tour-body {
+      padding: 30px;
+    }
+
+    .tour-body h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 15px;
+    }
+
+    .tour-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    .tour-price {
+      font-weight: 700;
+      color: var(--gold);
+      font-size: 18px;
+    }
+
+    .btn-book {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background: var(--navy);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: background 0.3s;
+    }
+
+    .btn-book:hover {
+      background: var(--gold);
+    }
+
+    /* ───────────── WHY CHOOSE US ───────────── */
+    #features {
+      background: var(--light-gray);
+    }
+
+    .feature-strip {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .feature-item {
+      flex: 1;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .feature-icon {
+      font-size: 50px;
+      color: var(--gold);
+      margin-bottom: 25px;
+    }
+
+    .feature-item h4 {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      margin-bottom: 15px;
+      color: var(--navy);
+    }
+
+    .feature-item p {
+      font-size: 15px;
+      color: #777;
+    }
+
+    /* ───────────── FEATURED DESTINATIONS ───────────── */
+    .dest-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .dest-item {
+      height: 400px;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .dest-img {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.6s ease;
+    }
+
+    .dest-item:hover .dest-img {
+      transform: scale(1.1);
+    }
+
+    .dest-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.8) 0%, transparent 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      transition: background 0.3s;
+    }
+
+    .dest-item:hover .dest-overlay {
+      background: linear-gradient(to top, rgba(201,168,76,0.8) 0%, transparent 60%);
+    }
+
+    .dest-overlay h4 {
+      color: white;
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .dest-overlay span {
+      color: rgba(255,255,255,0.7);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ───────────── FOOTER ───────────── */
+    footer {
+      background: var(--navy);
+      color: white;
+      padding: 100px 0 50px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+      gap: 60px;
+      margin-bottom: 80px;
+    }
+
+    .footer-col h5 {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      margin-bottom: 30px;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 36px;
+      color: var(--gold);
+      margin-bottom: 25px;
+      display: block;
+      text-decoration: none;
+    }
+
+    .footer-col p {
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      margin-bottom: 25px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--gold);
+    }
+
+    .contact-info li {
+      display: flex;
+      gap: 15px;
+      color: rgba(255,255,255,0.6);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 15px 20px;
+      border: none;
+      background: rgba(255,255,255,0.05);
+      color: white;
+      border-radius: 5px 0 0 5px;
+      outline: none;
+    }
+
+    .newsletter-form button {
+      padding: 15px 25px;
+      background: var(--gold);
+      border: none;
+      color: white;
+      font-weight: 700;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: rgba(255,255,255,0.3);
+      font-size: 13px;
+    }
+
+    /* ───────────── RESPONSIVE ───────────── */
+    @media (max-width: 1100px) {
+      .tour-grid { grid-template-columns: repeat(2, 1fr); }
+      .dest-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-actions .phone-cta { display: none; }
+      .nav-container { padding: 0 20px; }
+      .logo { font-size: 32px; }
+      
+      .hamburger {
+        display: block;
+        font-size: 24px;
+        color: var(--navy);
+        cursor: pointer;
+      }
+
+      .slide-city { font-size: 56px; }
+      .tour-grid, .dest-grid, .feature-strip { grid-template-columns: 1fr; }
+      .feature-strip { flex-direction: column; }
+      .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ───────────── MOBILE MENU OVERLAY ───────────── */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      max-width: 300px;
+      height: 100vh;
+      background: var(--white);
+      z-index: 2000;
+      padding: 80px 40px;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-menu.active {
+      right: 0;
+    }
+
+    .mobile-menu a {
+      text-decoration: none;
+      color: var(--charcoal);
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .menu-close {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 1999;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+    }
+
+    .menu-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ───────────── NAVBAR ───────────── -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">Horizons</a>
+      
+      <ul class="nav-links">
+        <li>
+          <a href="#">Home</a>
+          <ul class="dropdown">
+            <li><a href="#">Classic Video</a></li>
+            <li><a href="#">Modern Slider</a></li>
+            <li><a href="#">Creative Intro</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="#">Tours</a>
+          <ul class="dropdown">
+            <li><a href="#">Europe Tours</a></li>
+            <li><a href="#">Asia Tours</a></li>
+            <li><a href="#">Private Escape</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Pages</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Shop</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="icon-btn" aria-label="Search">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </button>
+        <button class="icon-btn" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        </button>
+        <a href="tel:+123456789" class="phone-cta">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.81 12.81 0 0 0 .81 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.81 2 2 0 0 1 1.72 2z"></path></svg>
+          </span> 
+          +1 800 456 789
+        </a>
+        <div class="hamburger">☰</div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="menu-overlay" id="menu-overlay"></div>
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="menu-close" id="menu-close">✕</div>
+    <a href="#">Home</a>
+    <a href="#">Tours</a>
+    <a href="#">Destinations</a>
+    <a href="#">Blog</a>
+    <a href="#">Shop</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <!-- ───────────── HERO SECTION ───────────── -->
+  <section id="hero">
+    <div class="slides">
+      <!-- Slide 1: Venice -->
+      <div class="slide active" style="background-image: url('Hero-section-images/VENEZIA.jpg')">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-country">Italy</p>
+          <h1 class="slide-city">VENEZIA</h1>
+          <p class="slide-desc">Arctic temperatures and several meters of snow are no match for the natural impressions and cultural twist that will warm your soul.</p>
+        </div>
+      </div>
+      
+      <!-- Slide 2: Maldives -->
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=1920&q=85')">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-country">Maldives</p>
+          <h1 class="slide-city">MALÉ ATOLL</h1>
+          <p class="slide-desc">Experience the pinnacle of luxury in crystal clear turquoise waters. Private bungalow escapes where every sunset is a masterpiece.</p>
+        </div>
+      </div>
+
+      <!-- Slide 3: Santorini -->
+      <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=1920&q=85')">
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-country">Greece</p>
+          <h1 class="slide-city">SANTORINI</h1>
+          <p class="slide-desc">Walk through white-washed cliffside villages and gaze into the deep blue Aegean sea. History and beauty intertwined on a volcanic rim.</p>
+        </div>
+      </div>
+    </div>
+
+    <button class="arrow arrow-left">←</button>
+    <button class="arrow arrow-right">→</button>
+
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <!-- ───────────── POPULAR TOURS ───────────── -->
+  <section id="tours" class="section-padding">
+    <div class="container">
+      <div class="text-center">
+        <h2>Popular Tours</h2>
+        <p class="subtitle">Handpicked luxury experiences for the discerning traveler</p>
+      </div>
+
+      <div class="tour-grid">
+        <!-- Tour 1 -->
+        <div class="tour-card">
+          <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80')">
+            <span class="tour-tag">Venice</span>
+          </div>
+          <div class="tour-body">
+            <h3>Grand Canal Gondola Serenade</h3>
+            <div class="tour-meta">
+              <span>⭐ 4.9 (124)</span>
+              <span>4 Days</span>
+              <span class="tour-price">$1,299</span>
+            </div>
+            <a href="#" class="btn-book">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Tour 2 -->
+        <div class="tour-card">
+          <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80')">
+            <span class="tour-tag">Maldives</span>
+          </div>
+          <div class="tour-body">
+            <h3>Overwater Bungalow Escape</h3>
+            <div class="tour-meta">
+              <span>⭐ 5.0 (86)</span>
+              <span>7 Days</span>
+              <span class="tour-price">$3,499</span>
+            </div>
+            <a href="#" class="btn-book">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Tour 3 -->
+        <div class="tour-card">
+          <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&q=80')">
+            <span class="tour-tag">Greece</span>
+          </div>
+          <div class="tour-body">
+            <h3>Santorini Cliffside Wine Tour</h3>
+            <div class="tour-meta">
+              <span>⭐ 4.8 (210)</span>
+              <span>5 Days</span>
+              <span class="tour-price">$1,850</span>
+            </div>
+            <a href="#" class="btn-book">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Tour 4 -->
+        <div class="tour-card">
+          <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80')">
+            <span class="tour-tag">Bali</span>
+          </div>
+          <div class="tour-body">
+            <h3>Ubud Jungle Spiritual Retreat</h3>
+            <div class="tour-meta">
+              <span>⭐ 4.9 (340)</span>
+              <span>8 Days</span>
+              <span class="tour-price">$2,100</span>
+            </div>
+            <a href="#" class="btn-book">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Tour 5 -->
+        <div class="tour-card">
+          <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&q=80')">
+            <span class="tour-tag">Amalfi</span>
+          </div>
+          <div class="tour-body">
+            <h3>Amalfi Coast Yacht Sailing</h3>
+            <div class="tour-meta">
+              <span>⭐ 5.0 (42)</span>
+              <span>6 Days</span>
+              <span class="tour-price">$4,200</span>
+            </div>
+            <a href="#" class="btn-book">Book Now</a>
+          </div>
+        </div>
+
+        <!-- Tour 6 -->
+        <div class="tour-card">
+          <div class="tour-img" style="background-image: url('https://images.unsplash.com/photo-1493246507139-91e8bef99c02?w=800&q=80')">
+            <span class="tour-tag">Swiss Alps</span>
+          </div>
+          <div class="tour-body">
+            <h3>Matterhorn Luxury Ski Lodge</h3>
+            <div class="tour-meta">
+              <span>⭐ 4.7 (156)</span>
+              <span>7 Days</span>
+              <span class="tour-price">$2,800</span>
+            </div>
+            <a href="#" class="btn-book">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── WHY CHOOSE US ───────────── -->
+  <section id="features" class="section-padding">
+    <div class="container">
+      <div class="text-center">
+        <h2>Why Choose Horizons</h2>
+        <p class="subtitle">Creating memories that last a lifetime</p>
+      </div>
+
+      <div class="feature-strip">
+        <div class="feature-item">
+          <div class="feature-icon">🏨</div>
+          <h4>Luxury Accommodations</h4>
+          <p>We partner with the world's finest 5-star hotels and private villas to ensure your absolute comfort.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🚢</div>
+          <h4>Exclusive Experiences</h4>
+          <p>From private yacht charters to after-hours museum tours, we open doors others can't.</p>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">✈️</div>
+          <h4>Bespoke Concierge</h4>
+          <p>Our 24/7 dedicated travel experts handle every detail, so you can simply enjoy the journey.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FEATURED DESTINATIONS ───────────── -->
+  <section id="destinations" class="section-padding">
+    <div class="container">
+      <div class="text-center">
+        <h2>Featured Destinations</h2>
+        <p class="subtitle">Explore our most requested locations across the globe</p>
+      </div>
+
+      <div class="dest-grid">
+        <div class="dest-item">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80')"></div>
+          <div class="dest-overlay">
+            <span>Italy</span>
+            <h4>Venice</h4>
+          </div>
+        </div>
+        <div class="dest-item">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&q=80')"></div>
+          <div class="dest-overlay">
+            <span>Maldives</span>
+            <h4>Malé Atoll</h4>
+          </div>
+        </div>
+        <div class="dest-item">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800&q=80')"></div>
+          <div class="dest-overlay">
+            <span>Greece</span>
+            <h4>Santorini</h4>
+          </div>
+        </div>
+        <div class="dest-item">
+          <div class="dest-img" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80')"></div>
+          <div class="dest-overlay">
+            <span>Indonesia</span>
+            <h4>Bali</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───────────── FOOTER ───────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="#" class="footer-logo">Horizons</a>
+          <p>Redefining luxury travel through bespoke itineraries and unparalleled access to the world's most beautiful corners.</p>
+          <div class="newsletter">
+            <h5>Newsletter</h5>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Your Email">
+              <button>Join</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h5>Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Our Tours</a></li>
+            <li><a href="#">Destinations</a></li>
+            <li><a href="#">Travel Blog</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Destinations</h5>
+          <ul class="footer-links">
+            <li><a href="#">Europe</a></li>
+            <li><a href="#">Asia</a></li>
+            <li><a href="#">Americas</a></li>
+            <li><a href="#">Africa</a></li>
+            <li><a href="#">Oceania</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contact Us</h5>
+          <ul class="contact-info">
+            <li>
+              <span>📍</span> 123 Luxury Way, Mayfair<br>London, UK W1J 7JZ
+            </li>
+            <li>
+              <span>📞</span> +1 800 456 789
+            </li>
+            <li>
+              <span>✉️</span> concierge@horizons.com
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 Horizons Luxury Travel. All Rights Reserved.</p>
+        <div class="socials">
+          <!-- Placeholder symbols for social icons -->
+          FB IG TW IN
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ───────────── SCRIPTS ───────────── -->
+  <script>
+    /* ═══════════════════════════════════════════════
+       HERO SLIDER LOGIC
+       ═══════════════════════════════════════════════ */
+    let current = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots   = document.querySelectorAll('.dot');
+    let timer    = setInterval(next, 5000);
+
+    function goTo(n) {
+      // Remove active class from current slide and dot
+      slides[current].classList.remove('active');
+      dots[current].classList.remove('active');
+      
+      // Calculate new index
+      current = (n + slides.length) % slides.length;
+      
+      // Add active class to new slide and dot
+      slides[current].classList.add('active');
+      dots[current].classList.add('active');
+    }
+
+    function next() { goTo(current + 1); }
+    function prev() { goTo(current - 1); }
+
+    // Event Listeners for controls
+    document.querySelector('.arrow-right').addEventListener('click', () => { 
+      clearInterval(timer); 
+      next(); 
+      timer = setInterval(next, 5000); 
+    });
+
+    document.querySelector('.arrow-left').addEventListener('click',  () => { 
+      clearInterval(timer); 
+      prev(); 
+      timer = setInterval(next, 5000); 
+    });
+
+    // Event listeners for dots
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        clearInterval(timer);
+        goTo(index);
+        timer = setInterval(next, 5000);
+      });
+    });
+
+    // Pause on hover
+    document.querySelector('#hero').addEventListener('mouseenter', () => clearInterval(timer));
+    document.querySelector('#hero').addEventListener('mouseleave', () => { timer = setInterval(next, 5000); });
+
+    /* ═══════════════════════════════════════════════
+       NAVBAR SCROLL EFFECT
+       ═══════════════════════════════════════════════ */
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    /* ═══════════════════════════════════════════════
+       RESPONSIVE MOBILE MENU
+       ═══════════════════════════════════════════════ */
+    const hamburger = document.querySelector('.hamburger');
+    const menuClose = document.getElementById('menu-close');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuOverlay = document.getElementById('menu-overlay');
+
+    function toggleMenu() {
+      mobileMenu.classList.toggle('active');
+      menuOverlay.classList.toggle('active');
+    }
+
+    hamburger.addEventListener('click', toggleMenu);
+    menuClose.addEventListener('click', toggleMenu);
+    menuOverlay.addEventListener('click', toggleMenu);
+  </script>
+
+</body>
+</html>

@@ -261,7 +261,7 @@
        ═══════════════════════════════════════════════ */
     for (let i = 1; i <= TOTAL_FRAMES; i++) {
       const img = new Image();
-      img.src = `frames/${i}.png`;
+      img.src = `frames_webp/${i}.webp`;
       img.onload = onFrameLoaded;
       img.onerror = onFrameLoaded;
       frames.push(img);
